@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+Route::get('/{any?}', function () { // any means sob route ei pabe
     return view('app');
 });
-Route::resource('category', CategoryController::class);
+
 
 Auth::routes();
 

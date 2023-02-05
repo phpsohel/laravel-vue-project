@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -34,7 +35,18 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+        ]);
+        $category = Category::create([
+            'name' => $request->name,
+            'slug'=>strtolower(str_replace(' ', '-', $request->name))
+        ]);
+        return response()->json('success', 200);
+        // $category = new Category();
+        // $category->name = $request->name;
+        // $category->slug = strtolower(str_replace(' ', '-', $request->name));
+        // $category->save();
     }
 
     /**
